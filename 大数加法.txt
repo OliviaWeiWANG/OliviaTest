@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Test {
+
+    public static void main(String[] argus) {
+        Scanner scan = new Scanner(System.in);
+        String x = scan.next();
+        String y = scan.next();
+        int[] a = new int[200];
+        int[] b = new int[200];
+        int indexA = 199;
+        int indexB = 199;
+        for (int i=x.length()-1 ; i>=0 ; i--) {
+            a[indexA] =  x.charAt(i) - '0';
+            indexA--;
+        }
+        for (int i=y.length()-1 ; i>=0 ; i--) {
+            b[indexB] =  y.charAt(i) - '0';
+            indexB--;
+        }
+        add(a,b);
+    }
+
+    public static void add(int[] A, int[] B) {
+        int[] C = new int[201];
+        int[] res = new int[200];
+        int index = 0;
+        for (int i=199 ; i>=0 ; i--) {
+            C[i] = (A[i] + B[i]) / 10;
+            res[i] = (A[i] + B[i] + C[i+1]) % 10;
+        }
+        for (int i=0 ; i<200 ; i++) {
+            if (res[i] != 0) {
+                index = i;
+                break;
+            }
+        }
+        for (int i=index ; i<200 ; i++) {
+            System.out.print(res[i]);
+        }
+    }
+
+}
